@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ThreadsPoolTask</string>
+    <string name="urls_file">urls.txt</string>
+</resources>
