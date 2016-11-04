@@ -8,11 +8,11 @@ import java.util.concurrent.Callable;
  * Created by webprog26 on 03.11.2016.
  */
 
-public class ImageDownloadTask implements Callable<Bitmap> {
+class ImageDownloadTask implements Callable<Bitmap> {
 
     private String mImageUrl;
 
-        public ImageDownloadTask(String mImageUrl) {
+        ImageDownloadTask(String mImageUrl) {
             this.mImageUrl = mImageUrl;
         }
 

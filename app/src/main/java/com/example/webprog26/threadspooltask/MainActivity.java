@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int NUMBER_OF_THREADS_IN_POOL = 5;
     private static final int TIMEOUT_IN_SECONDS = 1;
 
-    private GridView mGridView;
     private ArrayList<Bitmap> mBitmaps;
     private GridItemsAdapter mGridItemsAdapter;
 
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mGridView = (GridView) findViewById(R.id.gridView);
+        GridView mGridView = (GridView) findViewById(R.id.gridView);
 
         String urlsFileName = getResources().getString(R.string.urls_file);
         AssetsReader assetsReader = new AssetsReader(this);
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         private DownloadCompletionService mEcs;
 
-        public ConsumerThread(DownloadCompletionService ecs) {
+        ConsumerThread(DownloadCompletionService ecs) {
             this.mEcs = ecs;
         }
 
@@ -65,14 +64,16 @@ public class MainActivity extends AppCompatActivity {
                         addImage(future.get());
                     }
                 }
-            } catch (InterruptedException ie){
+            } catch (InterruptedException | ExecutionException ie){
                 ie.printStackTrace();
-            } catch (ExecutionException ee){
-                ee.printStackTrace();
             }
         }
     }
 
+    /**
+     * Adds received image to {@link ArrayList<Bitmap>}
+     * @param bitmap {@link Bitmap}
+     */
     private void addImage(final Bitmap bitmap){
         runOnUiThread(new Runnable() {
             @Override

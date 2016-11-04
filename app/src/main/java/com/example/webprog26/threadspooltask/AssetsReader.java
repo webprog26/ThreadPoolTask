@@ -14,21 +14,23 @@ import java.util.ArrayList;
  * Created by webprog26 on 03.11.2016.
  */
 
-public class AssetsReader {
+class AssetsReader {
 
     private static final String TAG = "AssetsReader";
 
 
     private AssetManager mAssetManager;
-    private Activity mActivity;
 
-    public AssetsReader(Activity activity) {
-        this.mActivity = activity;
-        mAssetManager = mActivity.getAssets();
+    AssetsReader(Activity activity) {
+        mAssetManager = activity.getAssets();
     }
 
-
-    public ArrayList<String> getURLsList(String fileName)
+    /**
+     * Returns {@link ArrayList<String>} of URLs
+     * @param fileName {@link String}
+     * @return fileName {@link String}
+     */
+    ArrayList<String> getURLsList(String fileName)
     {
         ArrayList<String> urlsList = new ArrayList<>();
 
@@ -66,10 +68,6 @@ public class AssetsReader {
                     ioe.printStackTrace();
                 }
             }
-        }
-
-        for(String s: urlsList){
-            Log.i(TAG, "url: " + s);
         }
 
         return urlsList;
